@@ -1,3 +1,5 @@
+puts 'Project Euler: Problem 8: Largest product in a series '
+
 size = 13
 max_product = 1
 temp_product = 1
@@ -24,11 +26,16 @@ series_str = "73167176531330624919225119674426574742355349194934"+
 
 puts "Series of numbers of length: " + series_str.length.to_s
 
-# any product with a zero would be zero, hence not the largest product
-# split the series up into sections bounded by zeros and work on each one
+# Solution strategy / notes:
+# * any series with a zero's product would be zero, hence not the largest product.
+# * split the series up into sections bounded by zeros and work on each one
+# rather than brute force through the whole thing.
+# * loop over each chunk from the series, discarding any that aren't of sufficient length
+# * iterate through each chunk to find the product and keep tabs on the largest thus far
+
 series_array = series_str.split("0") 
 
-# multiply all the elements of an array to determine their product
+# This method will multiply all the elements of an array to determine their product
 def multiply_each (array, product=1)
   array.each do |x|
     product *= x
@@ -36,15 +43,15 @@ def multiply_each (array, product=1)
   return product
 end
 
-# loop over each chunk from the split up series
-series_array.each.with_index(1) do |chunk, i|
-  if (chunk != nil && chunk.length > size)
+series_array.each do |chunk| 
+# series_array.each.with_index(1) do |chunk, i|
+  if chunk != nil && chunk.length > size
     #puts i.to_s + ": " + chunk
     for x in 0..(chunk.length - size)
       temp_chunk = chunk[x,size]
       temp_product = multiply_each temp_chunk.split(//).map(&:to_i)
       #puts "  " + x.to_s + ": " + temp_chunk + "  " + temp_product.to_s
-      if (temp_product > max_product)
+      if temp_product > max_product
         max_product = temp_product
       end
       temp_product = 1
