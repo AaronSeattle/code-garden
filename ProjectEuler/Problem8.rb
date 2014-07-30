@@ -24,7 +24,7 @@ series_str = "73167176531330624919225119674426574742355349194934"+
 "05886116467109405077541002256983155200055935729725"+
 "71636269561882670428252483600823257530420752963450"
 
-puts "Series of numbers of length: " + series_str.length.to_s
+puts "Series of numbers of length: #{series_str.length}"
 
 # Solution strategy / notes:
 # * any series with a zero's product would be zero, hence not the largest product.
@@ -46,11 +46,11 @@ end
 series_array.each do |chunk| 
 # series_array.each.with_index(1) do |chunk, i|
   if chunk != nil && chunk.length > size
-    #puts i.to_s + ": " + chunk
+    #puts "#{i}: #{chunk}"
     for x in 0..(chunk.length - size)
       temp_chunk = chunk[x,size]
       temp_product = multiply_each temp_chunk.split(//).map(&:to_i)
-      #puts "  " + x.to_s + ": " + temp_chunk + "  " + temp_product.to_s
+      #puts "  #{x}: #{temp_chunk} #{temp_product}"
       if temp_product > max_product
         max_product = temp_product
       end
@@ -60,4 +60,4 @@ series_array.each do |chunk|
 end
 
 puts
-puts "Max product of " + size.to_s + " adjacent digits = " + max_product.to_s
+puts "Max product of #{size} adjacent digits = #{max_product}"
