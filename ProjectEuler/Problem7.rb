@@ -2,14 +2,14 @@ puts "Project Euler Problem 7: What is the 10,001st prime number?"
 
 $LOAD_PATH << "."
 
-require "SieveOfEratosthenes.rb"
+require "ProjectEulerLib.rb"
 include Sieve
 
 # Approach: Use a sieve on a big enough number to generate > 10,000 primes
 
 num = 105000 # big enough number to have more than 10,000 primes
 
-a = Sieve.of_eratosthenes(num, true)
+a = Sieve.primes(num, true)
 
 puts "Found #{a.size} primes less than or equal to #{num}."
 if a.size > 10000
