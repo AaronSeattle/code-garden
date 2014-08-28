@@ -11,5 +11,3 @@ end
 
 puts
 puts 'Sum: ' + sum.to_s
-
-  
