@@ -1,4 +1,3 @@
-
 module Sieve
 
 	def info()
@@ -9,7 +8,13 @@ module Sieve
 		return
 	end
 
-	def of_eratosthenes(n, debug=false)
+	def primes(n, debug=false)
+		# once multiple sieve options are coded, decide which to call based on the imput params
+		# e.g. if n > 180000000, use sieve_of_sundaram, else use sieve_of_eratosthenes
+		return sieve_of_eratosthenes(n, debug)
+	end
+
+	def sieve_of_eratosthenes(n, debug=false)
 		# return array of all primes less than or equal n
 
 		start = Time.now
