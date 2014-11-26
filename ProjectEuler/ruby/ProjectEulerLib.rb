@@ -19,13 +19,6 @@ module Sieve
 
 		start = Time.now
 
-		maxRange = Math.sqrt(n).to_i + 1
-
-		if debug
-			puts "Num: #{n}"
-			puts "Threshold we don't need our sieve to filter beyond: #{maxRange}"
-		end
-
 		myList = Array.new
 		myTracker = Array.new
 
@@ -45,7 +38,7 @@ module Sieve
 		# * Initially, let p equal 2, the first prime number
 		p = 2
 
-		while p <= maxRange
+		while p*p <= n
 			# Step 3:
 			# * Starting from p, enumerate its multiples by counting to n in increments of p, and mark
 			# * them in the list (these will be 2p, 3p, 4p, etc.; the p itself should not be marked).
@@ -54,7 +47,7 @@ module Sieve
 				puts "Filtering out multiples of #{p}..."
 			end
 
-			sieveCounter = p * p
+			sieveCounter = p * p # optimization -- could start at p+p, but turns out you can skip to p*p
 			while sieveCounter <= n
 				myTracker[sieveCounter] = false
 				sieveCounter += p
