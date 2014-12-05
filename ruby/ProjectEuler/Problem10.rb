@@ -2,7 +2,7 @@ puts "Project Euler Problem 10: Find the sum of all the primes below two million
 
 $LOAD_PATH << "."
 
-require "ProjectEulerLib.rb"
+require "lib/ProjectEulerLib.rb"
 include Sieve
 
 # Approach: Use a sieve on a big enough number to generate > 10,000 primes
